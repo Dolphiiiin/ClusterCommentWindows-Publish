@@ -1,0 +1,36 @@
+ul {
+    margin: 20px;
+}
+li {
+    padding: 5px !important;
+}
+.commentColumn {
+    width: 100%;
+    height: auto;
+}
+.user {
+    display: flex;
+}
+.userValue {
+    position: static;
+    height: 100%;
+    width: auto;
+    margin: 5px 5px 0px 5px;
+}
+.user-icon {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
+
+.title {
+    padding: 15px 0px 10px 10px;
+}
+
+.scroll{
+    overflow-y: scroll;
+    height: 300px;
+}
+#scroll-inner{
+    height: 600px;
+}
