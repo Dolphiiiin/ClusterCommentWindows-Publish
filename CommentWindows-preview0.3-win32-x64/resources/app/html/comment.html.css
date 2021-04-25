@@ -25,6 +25,7 @@ li {
 
 .title {
     padding: 15px 0px 10px 10px;
+    margin-bottom: 5px !important;
 }
 
 .scroll{

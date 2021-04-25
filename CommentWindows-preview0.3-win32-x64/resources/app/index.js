@@ -13,6 +13,7 @@ const child_process = require('child_process')
 app.on("ready",function(){
     mainWindow = new BrowserWindow({width: 800, heigt: 600,webPreferences:{nodeIntegration: true,contextIsolation: false,}});
     mainWindow.loadURL("file://" + __dirname + "/html/config/main.html");
+    // mainWindow.loadURL("file://" + "D:\workspace\cluster_comment_log\html\Debug_matchAll\main.html");
     mainWindow.on("closed", function() {
         mainWindow = null;
     });

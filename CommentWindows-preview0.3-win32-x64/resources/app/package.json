@@ -16,6 +16,7 @@
     "jschardet": "^3.0.0"
   },
   "devDependencies": {
-    "config": "^3.3.6"
+    "config": "^3.3.6",
+    "electron-packager": "^15.2.0"
   }
 }
