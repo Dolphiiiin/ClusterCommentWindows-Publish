@@ -35,3 +35,9 @@ li {
 #scroll-inner{
     height: 600px;
 }
+
+#footer {
+
+    bottom: 0;
+    width: 100%;
+}

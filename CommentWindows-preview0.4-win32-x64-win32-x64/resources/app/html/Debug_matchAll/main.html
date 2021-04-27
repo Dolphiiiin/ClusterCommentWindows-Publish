@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment Windows</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="../index.html.css">
+    <link rel="stylesheet" href="../comment.html.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/bouyomichan_client.js"></script>
+
+    <script>
+        function urlopen(url){
+            const {shell} = require('electron');
+            shell.openExternal(url);
+        }
+    </script>
+</head>
+<body id="body">
+<script>
+    const bouyomi = true;
+
+
+
+
+    console.log("start process")
+    // let child = child_process.spawn("Calcite2.exe", []);
+
+    let match,
+        scrape = [],
+        i = 0,
+        regex,
+        talkText
+    ;
+
+    let data = "{\"commentId\":\"3221411\",\"commentedBy\":{\"userId\":\"9dafaef5-0bf9-45a8-9d41-9de35c4d1d82\",\"username\":\"POKKY_VR\",\"displayName\":\"POKKY\",\"photoUrl\":\"https://cluster-file-storage.imgix.net/files/group_4fb512605ffd6839fa0b6f8ec7/9dafaef5-0bf9-45a8-9d41-9de35c4d1d82/748bdac3-6fb3-4885-a5a4-d6d7129aceb3/square.jpg?auto=format\\u0026fit=crop\\u0026h=64\\u0026w=64\"},\"body\":\"草\",\"createdAt\":\"2021-04-25T06:05:13Z\",\"type\":\"cluster\"}{\"commentId\":\"3221412\",\"commentedBy\":{\"userId\":\"cafc734e-86e4-4534-bf42-eee705607e13\",\"username\":\"dizzygans\",\"displayName\":\"ディジー\",\"photoUrl\":\"https://cluster-file-storage.imgix.net/files/group_c14db9a07d69dbb9f4db63b04f/cafc734e-86e4-4534-bf42-eee705607e13/366e9951-0d27-4ae9-8a9f-3e56eb4e3367/square.png?auto=format\\u0026fit=crop\\u0026h=64\\u0026w=64\"},\"body\":\"ああああ\",\"createdAt\":\"2021-04-25T06:05:14Z\",\"type\":\"cluster\"}\""
+    data = data.replaceAll("\\\"","");
+     console.log(data)
+    //
+    json = data.match(/\{[\s\S]*?\}[\s\S]*?\}/g);
+    console.log(json[1])
+    let _json = JSON.parse(json[1]);
+    console.log(_json)
+    console.log("body:"+_json[body])
+
+
+    // if(data.length != 2) {
+    //
+    //
+
+    //     console.log(json);
+    //     for (i=0; i<json.length; i ++){
+    //         match = String(json[i].match(/"username":"(.*?)"/g));
+    //         match = match.replace("\"username\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(json[i].match(/"displayName":"(.*?)"/g));
+    //         match = match.replace("\"displayName\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(json[i].match(/"photoUrl":"(.*?)"/g));
+    //         match = match.replace("\"photoUrl\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(json[i].match(/"body":"(.*?)","createdAt":"/g));
+    //         match = match.replace("\"body\":\"", "");
+    //         match = match.replace("\",\"createdAt\":\"", "")
+    //         match = match.replaceAll("\\n", "<br>");
+    //         match = match.replaceAll("\\r", "");
+    //         /////記号の色々
+    //         match = match.replaceAll()
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(json[i].match(/"createdAt":"(.*?)"/g));
+    //         match = match.replace("\"createdAt\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(new Date(match));
+    //
+    //
+    //         console.log("JSON:\n" + json[i])
+    //         console.log("ArrayData:\n" + scrape)
+    //
+    //         //
+    //         // child1 = document.createElement('li'),
+    //         //     child2 = document.createElement('div'),
+    //         //     child3 = document.createElement('img'),
+    //         //     child4 = document.createElement('p'),
+    //         //     child5 = document.createElement('a'),
+    //         //     child6 = document.createElement('p'),
+    //         //     child7 = document.createElement('p')
+    //         // ;
+    //         //
+    //         // child1.className = "control box commentColumn";
+    //         // child1.id = "li" + String(i);
+    //         //
+    //         // child2.className = "user";
+    //         // child2.id = "div" + String(i);
+    //         //
+    //         // child3.className = "userValue user-icon";
+    //         // child3.src = scrape[2];
+    //         //
+    //         // child4.className = "userValue userID tag is-primary";
+    //         // child4.innerText = scrape[1];
+    //         //
+    //         // child5.className = "userValue userID tag is-primary is-light";
+    //         // child5.target = "_blank";
+    //         // child5.href = "https://cluster.mu/u/" + scrape[0];
+    //         // child5.innerText = scrape[0];
+    //         //
+    //         // child6.className = "userValue userID tag is-light";
+    //         // child6.innerText = scrape[4];
+    //         //
+    //         // child7.className = "title is-6";
+    //         // child7.innerHTML = scrape[3];
+    //         //
+    //         // element = document.getElementById("comment-column");
+    //         // element.prepend(child1);
+    //         // element = document.getElementById("li" + String(i));
+    //         // element.appendChild(child2);
+    //         // element.appendChild(child7);
+    //         // element = document.getElementById("div" + String(i));
+    //         // element.appendChild(child3);
+    //         // element.appendChild(child4);
+    //         // element.appendChild(child5);
+    //         // element.appendChild(child6);
+    //
+    //
+    //         // if (bouyomi == true) {
+    //         //     talkText = scrape[3].replaceAll("<br>", "");
+    //         //     bouyomiChanClient.talk(scrape[3]);
+    //         // }
+    //
+    //         // element = document.getElementById("comment-column");
+    //         scrape = [];
+    //     }
+    // }
+    // let bouyomiChanClient = new BouyomiChanClient();
+    // child.stdout.setEncoding('utf8');
+    // child.stdout.on('data', function(data) {
+    //     data = data.replace(/\s+/g, "");
+    //     console.log("HEX:\n"+data)
+    //     if(data.length != 2) {
+    //         data = Buffer.from(data, 'hex').toString('utf-8');
+    //         match = String(data.match(/"username":"(.*?)"/g));
+    //         match = match.replace("\"username\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(data.match(/"displayName":"(.*?)"/g));
+    //         match = match.replace("\"displayName\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(data.match(/"photoUrl":"(.*?)"/g));
+    //         match = match.replace("\"photoUrl\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(data.match(/"body":"(.*?)","createdAt":"/g));
+    //         match = match.replace("\"body\":\"", "");
+    //         match = match.replace("\",\"createdAt\":\"", "")
+    //         match = match.replaceAll("\\n", "<br>");
+    //         match = match.replaceAll("\\r", "");
+    //
+    //         /////記号の色々
+    //         match = match.replaceAll()
+    //         scrape.push(match);
+    //
+    //
+    //         match = String(data.match(/"createdAt":"(.*?)"/g));
+    //         match = match.replace("\"createdAt\":\"", "");
+    //         match = match.replace("\"", "");
+    //         scrape.push(new Date(match));
+    //
+    //
+    //         console.log("JSON:\n" + data)
+    //         console.log("ArrayData:\n" + scrape)
+    //
+    //
+    //         child1 = document.createElement('li'),
+    //             child2 = document.createElement('div'),
+    //             child3 = document.createElement('img'),
+    //             child4 = document.createElement('p'),
+    //             child5 = document.createElement('a'),
+    //             child6 = document.createElement('p'),
+    //             child7 = document.createElement('p')
+    //         ;
+    //
+    //         child1.className = "control box commentColumn";
+    //         child1.id = "li" + String(i);
+    //
+    //         child2.className = "user";
+    //         child2.id = "div" + String(i);
+    //
+    //         child3.className = "userValue user-icon";
+    //         child3.src = scrape[2];
+    //
+    //         child4.className = "userValue userID tag is-primary";
+    //         child4.innerText = scrape[1];
+    //
+    //         child5.className = "userValue userID tag is-primary is-light";
+    //         child5.target = "_blank";
+    //         child5.href = "https://cluster.mu/u/" + scrape[0];
+    //         child5.innerText = scrape[0];
+    //
+    //         child6.className = "userValue userID tag is-light";
+    //         child6.innerText = scrape[4];
+    //
+    //         child7.className = "title is-6";
+    //         child7.innerHTML = scrape[3];
+    //
+    //         element = document.getElementById("comment-column");
+    //         element.prepend(child1);
+    //         element = document.getElementById("li" + String(i));
+    //         element.appendChild(child2);
+    //         element.appendChild(child7);
+    //         element = document.getElementById("div" + String(i));
+    //         element.appendChild(child3);
+    //         element.appendChild(child4);
+    //         element.appendChild(child5);
+    //         element.appendChild(child6);
+    //
+    //
+    //         if (bouyomi == true) {
+    //             talkText = scrape[3].replaceAll("<br>","");
+    //             bouyomiChanClient.talk(scrape[3]);
+    //         }
+    //
+    //         element = document.getElementById("comment-column");
+    //         i++;
+    //         scrape = [];
+    //     }
+    // });
+
+</script>
+<main id="parent">
+    <div class="box control" style="margin: 10px 20px 10px 20px;">
+        <a class="button is-large is-fullwidth" onclick="startTshark()">スタート</a>
+    </div>
+
+
+    <div class="control box">
+        <h1 class="title is-4">詳細設定</h1>
+        <div class="control box">
+            <h1 class="title is-5">棒読みちゃん連携</h1>
+            <div class="control box">
+                <label class="checkbox">
+                    <input type="checkbox" class="checkbox" onclick="bouyomiSetting()" id="bouyomiSetting">棒読みちゃん連携をオンにする
+                </label>
+                <p>棒読みちゃんに <a href="https://github.com/ryujimiya/Plugin_BymChnWebSocket">WebSocketプラグイン</a>が導入されている必要があります</p>
+                <script>
+                    function bouyomiSetting(){
+                        let val = document.getElementById("bouyomiSetting");
+
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
