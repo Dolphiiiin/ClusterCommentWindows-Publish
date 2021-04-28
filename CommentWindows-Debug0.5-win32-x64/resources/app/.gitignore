@@ -1,0 +1,3 @@
+# プロジェクトの除外パス
+/node_modules/
+/ClusterCommentWindows-preview0.1-win32-x64/

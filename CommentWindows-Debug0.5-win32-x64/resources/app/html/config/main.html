@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment Windows</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="../index.html.css">
+    <link rel="stylesheet" href="../comment.html.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/bouyomichan_client.js"></script>
+
+    <script>
+        function urlopen(url){
+            const {shell} = require('electron');
+            shell.openExternal(url);
+        }
+    </script>
+</head>
+<body id="body">
+
+
+
+<footer>
+    <details class="box" id="footer">
+        <summary>設定を開く</summary>
+        <div class="control">
+            <details class="box" id="footer">
+                <summary>表示設定</summary>
+                <div class="control box">
+                    <label class="checkbox box">
+                        <input type="checkbox" class="checkbox" onclick="bouyomiSetting()" id="visualSettingEmoticon" checked="true">エモーションを表示する
+                    </label>
+                    <label class="checkbox box">
+                        <input type="checkbox" class="checkbox" onclick="bouyomiSetting()" id="visualSettingComment" checked="true">コメントを表示する
+                    </label>
+                    <label class="box">
+                        <h1 class="title is-5">ホワイトリスト</h1>
+                        <p>設定したユーザーのみのコメントを表示します</p>
+                        <input class="input is-small" placeholder="カンマ(,)区切りでユーザーを複数指定できます" id="visualSettingWhite">
+                        <h1 class="title is-5">ブラックリスト</h1>
+                        <p>設定したユーザーのみのコメントを表示しません</p>
+                        <input class="input is-small" placeholder="カンマ(,)区切りでユーザーを複数指定できます" id="visualSettingBlack">
+                    </label>
+                </div>
+            </details>
+            <details class="box" id="footer">
+                <summary>棒読みちゃん連携</summary>
+                <div class="control box">
+                    <label class="checkbox">
+                        <input type="checkbox" class="checkbox" onclick="bouyomiSetting()" id="bouyomiSetting">棒読みちゃん連携をオンにする
+                    </label>
+                    <p>棒読みちゃんに <a href="https://github.com/ryujimiya/Plugin_BymChnWebSocket" target="_blank">WebSocketプラグイン</a>が導入されている必要があります</p>
+                    <label class="box">
+                        <h1 class="title is-5">Prefixの設定</h1>
+                        <p>設定した文字が先頭になっているコメントのみ読み上げます</p>
+                        <input class="input is-small" placeholder="空欄の場合はすべてのテキストを読み上げます" id="bouyomiPrefix">
+                    </label>
+                    <label class="box">
+                        <h1 class="title is-5">ホワイトリスト</h1>
+                        <input class="input is-small" placeholder="カンマ(,)区切りでユーザーを複数指定できます  空欄ですべてのユーザーを読み上げ" id="bouyomiUser">
+                    </label>
+
+                    <script>
+                        function bouyomiSetting(){
+                            let val = document.getElementById("bouyomiSetting");
+
+                        }
+                    </script>
+                </div>
+            </details>
+            <details class="box" id="footer">
+                <summary>デバック</summary>
+                <div class="control box">
+                    <label>
+                        <a class="button is-large is-fullwidth" onclick="kill()">Calciteを再起動</a>
+                    </label>
+                </div>
+            </details>
+        </div>
+    </details>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

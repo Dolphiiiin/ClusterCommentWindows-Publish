@@ -41,3 +41,11 @@ li {
     bottom: 0;
     width: 100%;
 }
+.emoticon {
+    display: flex;
+    width: 25px;
+    height: 25px;
+}
+.emoticonColumn {
+    display: flex;
+}
